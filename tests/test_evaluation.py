@@ -73,7 +73,13 @@ def test_golden_set_loads():
     path = Path("app/evaluation/golden_set.json")
     assert path.exists()
     data = json.loads(path.read_text(encoding="utf-8"))
-    assert len(data) == 10
+    assert len(data) == 150
     assert all("expected_intent" in item for item in data)
     assert all("expected_escalate" in item for item in data)
     assert all("expected_status" in item for item in data)
+    assert all("category" in item for item in data)
+    # Verify 30 per category
+    from collections import Counter
+    dist = Counter(item["category"] for item in data)
+    for cat in ["billing", "technical", "general", "refund_request", "human_handoff"]:
+        assert dist[cat] == 30, f"Expected 30 {cat} questions, got {dist[cat]}"
