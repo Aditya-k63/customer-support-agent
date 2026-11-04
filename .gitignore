@@ -32,3 +32,4 @@ build/
 chroma_db/
 *.db
 *.sqlite
+regression_report.json
