@@ -1,0 +1,62 @@
+[
+  {
+    "query": "I want to refund my order",
+    "expected_intent": "refund_request",
+    "expected_escalate": true,
+    "expected_status": "in_progress"
+  },
+  {
+    "query": "How do I reset my password?",
+    "expected_intent": "technical",
+    "expected_escalate": false,
+    "expected_status": "resolved"
+  },
+  {
+    "query": "When will my invoice be generated?",
+    "expected_intent": "billing",
+    "expected_escalate": false,
+    "expected_status": "resolved"
+  },
+  {
+    "query": "What are your business hours?",
+    "expected_intent": "general",
+    "expected_escalate": false,
+    "expected_status": "resolved"
+  },
+  {
+    "query": "I was charged twice for the same item",
+    "expected_intent": "billing",
+    "expected_escalate": true,
+    "expected_status": "in_progress"
+  },
+  {
+    "query": "Can I speak to a human agent?",
+    "expected_intent": "human_handoff",
+    "expected_escalate": true,
+    "expected_status": "in_progress"
+  },
+  {
+    "query": "How do I track my shipment?",
+    "expected_intent": "general",
+    "expected_escalate": false,
+    "expected_status": "resolved"
+  },
+  {
+    "query": "I need to update my billing address",
+    "expected_intent": "billing",
+    "expected_escalate": false,
+    "expected_status": "resolved"
+  },
+  {
+    "query": "The website is not loading",
+    "expected_intent": "technical",
+    "expected_escalate": false,
+    "expected_status": "resolved"
+  },
+  {
+    "query": "I want to cancel my subscription",
+    "expected_intent": "refund_request",
+    "expected_escalate": true,
+    "expected_status": "in_progress"
+  }
+]
