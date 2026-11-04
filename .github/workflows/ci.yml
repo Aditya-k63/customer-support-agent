@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  # Step 1: Build Check — linting + unit tests
+  build:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -15,7 +16,7 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: 1234509876
-          POSTGRES_DB: CRAG
+          POSTGRES_DB: agent
         ports:
           - 5432:5432
         options: >-
@@ -42,7 +43,7 @@ jobs:
 
       - name: Run unit tests
         env:
-          DB_NAME: CRAG
+          DB_NAME: agent
           DB_USER: postgres
           DB_PASSWORD: 1234509876
           DB_HOST: localhost
@@ -52,20 +53,61 @@ jobs:
           API_KEY: rag-secret-2026
         run: pytest tests/ -v
 
-      - name: Run regression evaluation gate
+  # Step 2: Benchmark — evaluation on 150-question golden set (regression gate)
+  benchmark:
+    needs: build
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: ankane/pgvector:latest
         env:
-          DB_NAME: CRAG
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 1234509876
+          POSTGRES_DB: agent
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run benchmark evaluation gate
+        env:
+          DB_NAME: agent
           DB_USER: postgres
           DB_PASSWORD: 1234509876
           DB_HOST: localhost
           DB_PORT: 5432
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: openai/gpt-oss-20b
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: meta-llama/llama-3.1-8b-instruct
           API_KEY: rag-secret-2026
         run: python scripts/run_evaluation.py
 
+      - name: Upload regression report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-report
+          path: regression_report.json
+
+  # Step 3: Docker Push — only if benchmark passes
   docker:
-    needs: test
+    needs: benchmark
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
 
@@ -90,3 +132,29 @@ jobs:
           tags: adsharma14/customer-support-agent:latest
           cache-from: type=registry,ref=adsharma14/customer-support-agent:cache
           cache-to: type=registry,ref=adsharma14/customer-support-agent:cache,mode=max
+
+  # Step 4: Baseline Update — only if Docker push succeeds
+  update-baseline:
+    needs: docker
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download regression report artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: regression-report
+          path: .
+
+      - name: Copy regression report as baseline
+        run: cp regression_report.json baseline_report.json
+
+      - name: Commit updated baseline
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add baseline_report.json
+          git commit -m "chore: update baseline metrics after successful deploy" || echo "No changes to commit"
+          git push origin main || echo "Push failed or no changes"

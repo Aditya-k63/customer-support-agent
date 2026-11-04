@@ -1,7 +1,8 @@
 """Regression tests: ensures previously-verified behavior does not degrade.
 
-These tests run the agent against the golden set with a mocked LLM so results
-are deterministic and independent of external API variability.
+These tests run the agent against the golden set with a mocked LLM and
+mocked TicketDB so results are deterministic and independent of external
+API variability or database availability.
 """
 import json
 from pathlib import Path
@@ -149,6 +150,16 @@ def mock_llm_generate(*args, **kwargs) -> str:
     return best_intent
 
 
+async def mock_create_ticket(*args, **kwargs) -> int:
+    """Mock ticket creation that returns a fake ID without touching the DB."""
+    return 999
+
+
+async def mock_add_conversation(*args, **kwargs) -> int:
+    """Mock conversation creation that returns a fake ID without touching the DB."""
+    return 999
+
+
 @pytest.mark.asyncio
 async def test_regression_intent_classification():
     """Intent classification accuracy must stay at or above v1 baseline threshold."""
@@ -164,6 +175,12 @@ async def test_regression_intent_classification():
         with patch(
             "app.services.llm.LLMService.generate",
             new=AsyncMock(side_effect=mock_llm_generate),
+        ), patch(
+            "app.agents.tools.ticket_db.TicketDB.create_ticket",
+            new=mock_create_ticket,
+        ), patch(
+            "app.agents.tools.ticket_db.TicketDB.add_conversation",
+            new=mock_add_conversation,
         ):
             result = await graph.ainvoke(state)
         predicted = result.get("intent", "general")
@@ -199,6 +216,12 @@ async def test_regression_escalation_logic():
             with patch(
                 "app.services.llm.LLMService.generate",
                 new=AsyncMock(side_effect=mock_llm_generate),
+            ), patch(
+                "app.agents.tools.ticket_db.TicketDB.create_ticket",
+                new=mock_create_ticket,
+            ), patch(
+                "app.agents.tools.ticket_db.TicketDB.add_conversation",
+                new=mock_add_conversation,
             ):
                 result = await graph.ainvoke(state)
             assert result.get("escalation_flag") is True, (
@@ -218,6 +241,12 @@ async def test_regression_ticket_status_non_escalated():
             with patch(
                 "app.services.llm.LLMService.generate",
                 new=AsyncMock(return_value="Here is your answer."),
+            ), patch(
+                "app.agents.tools.ticket_db.TicketDB.create_ticket",
+                new=mock_create_ticket,
+            ), patch(
+                "app.agents.tools.ticket_db.TicketDB.add_conversation",
+                new=mock_add_conversation,
             ):
                 result = await graph.ainvoke(state)
             assert result.get("status") == "resolved", (

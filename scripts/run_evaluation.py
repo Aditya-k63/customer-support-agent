@@ -149,6 +149,7 @@ async def main() -> int:
     predictions: list[str] = []
     intents: list[str] = []
     escalations: list[bool] = []
+    expected_escalations: list[bool] = []
     responses: list[str] = []
     contexts: list[list[str]] = []
     statuses: list[str] = []
@@ -180,11 +181,15 @@ async def main() -> int:
         predictions.append(result.get("intent", "general"))
         intents.append(item["expected_intent"])
         escalations.append(result.get("escalation_flag", False))
+        expected_escalations.append(item["expected_escalate"])
         responses.append(result.get("response", ""))
         contexts.append(result.get("context", []))
         statuses.append(result.get("status", "open"))
 
-    results = run_evaluation(predictions, intents, escalations, responses, contexts, statuses)
+    results = run_evaluation(
+        predictions, intents, escalations, expected_escalations,
+        responses, contexts, statuses,
+    )
     passed = save_results(results)
 
     if passed:
