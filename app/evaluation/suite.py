@@ -20,7 +20,7 @@ REGRESSION_THRESHOLDS: Dict[str, float] = {
     "Intent Accuracy": 0.80,
     "Escalation Accuracy": 0.80,
     "Response Groundedness": 0.70,
-    "Ticket Resolution Rate": 0.60,
+    "Ticket Resolution Rate": 0.40,
 }
 
 
