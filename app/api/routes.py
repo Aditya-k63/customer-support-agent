@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.schemas.chat import ChatRequest, ChatResponse
-from app.schemas.ticket import TicketOut, TicketCreate
+from app.schemas.ticket import TicketOut
 from app.core.security import verify_api_key
 from app.agents.graph import build_graph
 from app.db.base import get_db

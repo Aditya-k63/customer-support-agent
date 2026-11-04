@@ -1,6 +1,4 @@
 """LLM service with Groq provider."""
-import os
-from typing import Optional
 from app.core.config import settings
 
 

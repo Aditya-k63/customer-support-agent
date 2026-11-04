@@ -3,7 +3,6 @@
 These tests run the agent against the golden set with a mocked LLM so results
 are deterministic and independent of external API variability.
 """
-import asyncio
 import json
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
