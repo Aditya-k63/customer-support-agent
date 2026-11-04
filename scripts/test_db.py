@@ -2,27 +2,35 @@
 import asyncio
 import sys
 from pathlib import Path
+from sqlalchemy import select
 
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from app.db.base import engine, AsyncSessionLocal
-from app.db.models import Base, Ticket, Conversation, DocumentChunk
-from sqlalchemy import select
-from app.agents.tools.ticket_db import TicketDB
+from app.db.base import engine, AsyncSessionLocal  # noqa: E402
+from app.db.models import Base, Ticket, DocumentChunk  # noqa: E402
+from app.agents.tools.ticket_db import TicketDB  # noqa: E402
+
+
+async def create_tables() -> None:
+    """Create all tables defined in SQLAlchemy models."""
+    print("[SETUP] Creating database tables...")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    print("[OK] Tables created: tickets, conversations, document_chunks")
 
 
 async def test_connection() -> bool:
     """Verify we can connect to PostgreSQL and query."""
     print("[TEST] Database connection...")
     async with AsyncSessionLocal() as session:
-        result = await session.execute(select(Ticket).limit(1))
+        await session.execute(select(Ticket).limit(1))
         print("[OK] Database connection successful")
         return True
 
 
-async def test_ticket_persistence() -> int:
+async def test_ticket_persistence() -> None:
     """Create, read, update a ticket to verify full CRUD."""
     print("[TEST] Ticket persistence...")
     ticket_db = TicketDB()
@@ -61,25 +69,15 @@ async def test_ticket_persistence() -> int:
     print(f"   Added conversation ID: {conv_id}")
 
     print("[OK] Ticket persistence test passed")
-    return ticket_id
 
 
 async def test_vector_chunk() -> None:
     """Verify DocumentChunk model can be inserted (pgvector schema)."""
     print("[TEST] Document chunk (pgvector) table...")
     async with AsyncSessionLocal() as session:
-        result = await session.execute(select(DocumentChunk).limit(1))
-        rows = result.fetchall()
-        print(f"   DocumentChunk table accessible (rows: {len(rows)})")
+        await session.execute(select(DocumentChunk).limit(1))
+        print("   DocumentChunk table accessible")
     print("[OK] Vector chunk table test passed")
-
-
-async def create_tables() -> None:
-    """Create all tables defined in SQLAlchemy models."""
-    print("[SETUP] Creating database tables...")
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    print("[OK] Tables created: tickets, conversations, document_chunks")
 
 
 async def main() -> None:
@@ -89,7 +87,7 @@ async def main() -> None:
 
     await create_tables()
     await test_connection()
-    ticket_id = await test_ticket_persistence()
+    await test_ticket_persistence()
     await test_vector_chunk()
 
     print("\n" + "=" * 50)
