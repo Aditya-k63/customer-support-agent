@@ -54,6 +54,9 @@ jobs:
           API_KEY: rag-secret-2026
         run: pytest tests/ -v
 
+      - name: Dependency vulnerability scan
+        run: pip install pip-audit && pip-audit --desc=all || true
+
   # Step 2: Benchmark — evaluation on 150-question golden set (regression gate)
   benchmark:
     needs: build
@@ -154,6 +157,15 @@ jobs:
           tags: adsharma14/customer-support-agent:latest
           cache-from: type=registry,ref=adsharma14/customer-support-agent:cache
           cache-to: type=registry,ref=adsharma14/customer-support-agent:cache,mode=max
+
+      - name: Container vulnerability scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: adsharma14/customer-support-agent:latest
+          severity: CRITICAL,HIGH
+          exit-code: 1
+          skip-dirs: /app/.venv
+          skip-files: .gitignore
 
   # Step 4: Baseline Update — only if Docker push succeeds
   update-baseline:

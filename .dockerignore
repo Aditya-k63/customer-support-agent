@@ -1,0 +1,51 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.mypy_cache
+.pytest_cache
+.hypothesis
+*.egg-info/
+dist/
+build/
+*.cfg
+.idea/
+.vscode/
+.DS_Store
+
+# Environment files
+.env
+
+# Data
+*.db
+*.sqlite
+chroma_db/
+
+# Local development files (not needed in production image)
+scripts/
+tests/
+README.md
+.github/
+docker-compose.yml
+
+# Docker
+docker/
