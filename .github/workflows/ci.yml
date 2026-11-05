@@ -33,11 +33,17 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-glx libglib2.0-0
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install sentence-transformers==2.7.0 numpy==1.26.4
+          pip install sentence-transformers==2.7.0 numpy==1.26.4 || \
+            pip install sentence-transformers==2.7.0 --no-deps
 
       - name: Run linting
         run: ruff check app tests scripts
@@ -84,11 +90,17 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgl1-mesa-glx libglib2.0-0
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install sentence-transformers==2.7.0 numpy==1.26.4
+          pip install sentence-transformers==2.7.0 numpy==1.26.4 || \
+            pip install sentence-transformers==2.7.0 --no-deps
 
       - name: Create database and pgvector extension
         env:

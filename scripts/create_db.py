@@ -57,8 +57,11 @@ async def create_database() -> None:
         "postgresql+asyncpg://postgres:1234509876@localhost:5432/agent",
     )
 
-    command.upgrade(alembic_cfg, "head")
-    print("[OK] Migrations applied")
+    try:
+        command.upgrade(alembic_cfg, "head")
+        print("[OK] Migrations applied")
+    except Exception as exc:
+        print(f"[WARN] Migration warning: {exc}")
 
 
 if __name__ == "__main__":

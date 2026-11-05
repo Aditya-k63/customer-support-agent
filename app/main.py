@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request, status, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
@@ -26,31 +28,9 @@ structlog.configure(
 
 logger = structlog.get_logger(__name__)
 
-app = FastAPI(
-    title="Autonomous Customer Support Agent",
-    version="1.0.0",
-    description="LangGraph + RAG multi-agent support system",
-)
 
-# Trusted host middleware - restrict to known hosts
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=settings.ALLOWED_HOSTS.split(",") if settings.ALLOWED_HOSTS else ["localhost", "127.0.0.1"],
-)
-
-# CORS - restrict origins (no wildcard with credentials)
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS.split(",") if settings.CORS_ORIGINS else ["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
-    expose_headers=["X-Request-ID"],
-)
-
-
-@app.on_event("startup")
-async def run_migrations():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Run Alembic migrations on startup."""
     from alembic import command
     from alembic.config import Config
@@ -70,6 +50,31 @@ async def run_migrations():
         logger.warning("Failed to apply migrations on startup", error=str(exc))
         logger.warning("Migrations can be run manually with: alembic upgrade head")
 
+    yield
+
+
+app = FastAPI(
+    title="Autonomous Customer Support Agent",
+    version="1.0.0",
+    description="LangGraph + RAG multi-agent support system",
+    lifespan=lifespan,
+)
+
+# Trusted host middleware - restrict to known hosts
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=settings.ALLOWED_HOSTS.split(",") if settings.ALLOWED_HOSTS else ["localhost", "127.0.0.1"],
+)
+
+# CORS - restrict origins (no wildcard with credentials)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS.split(",") if settings.CORS_ORIGINS else ["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "X-Request-ID"],
+    expose_headers=["X-Request-ID"],
+)
 
 # Rate limiting middleware
 @app.middleware("http")
