@@ -4,1049 +4,1619 @@
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "When will my invoice be generated?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I need to update my billing address.",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I update my payment method?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Why is my bill higher this month?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a receipt for my last payment?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I don't recognize this charge on my card.",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I cancel my subscription?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "What payment methods do you accept?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "When is my next payment due?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to change my billing plan.",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a refund for an accidental charge?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I view my billing history?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Why was my payment declined?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I need to update my credit card details.",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get an itemized invoice?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I apply a promo code?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "What happens if I miss a payment?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I pause my subscription?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I request a billing adjustment?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I was charged after I cancelled.",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a tax receipt?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I change my currency?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Why is there a pending charge?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I split my payment?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I update my tax information?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a refund for a failed service?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I was overcharged.",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I contact billing support?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a discount for loyalty?",
     "expected_intent": "billing",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "billing"
+    "category": "billing",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I reset my password?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The website is not loading.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I reset my password?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I can't log into my account.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The app keeps crashing on my phone.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I enable two-factor authentication?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I'm getting a 404 error on your site.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I clear my browser cache?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The video won't play.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I update the app?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I'm having trouble uploading files.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The search function isn't working.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I change my notification settings?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I can't access my dashboard.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The page keeps freezing.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I export my data?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I'm getting an SSL error.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I connect my domain?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The checkout button isn't working.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I enable dark mode?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I can't verify my email address.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The API is returning errors.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I set up integrations?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I'm getting a timeout error.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I clear my cookies?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The mobile app won't open.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I reset my MFA?",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "I can't download my files.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "The form won't submit.",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "How do I reset my password? (reference #29)",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "technical"
+    "category": "technical",
+    "relevant_docs": [
+      "Technical support: Reset your password at account settings or contact support@company.com.",
+      "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password."
+    ]
   },
   {
     "query": "What are your business hours?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I track my shipment?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Where is your office located?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I contact customer support?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What is your return policy?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you ship internationally?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How long does shipping take?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Can I change my shipping address?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What is your privacy policy?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I create an account?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you have a mobile app?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I delete my account?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What countries do you serve?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I verify my identity?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you offer student discounts?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I refer a friend?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What is your terms of service?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I unsubscribe from emails?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you have a live chat?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I update my profile?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What is your refund window?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you offer enterprise plans?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I get started?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What features are included in free tier?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I upgrade my account?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you offer training?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I provide feedback?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "What is your company mission?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "How do I find your help center?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "Do you have a status page?",
     "expected_intent": "general",
     "expected_escalate": false,
     "expected_status": "resolved",
-    "category": "general"
+    "category": "general",
+    "relevant_docs": [
+      "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+      "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+      "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page."
+    ]
   },
   {
     "query": "I want to refund my order.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to cancel my subscription.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a refund for a defective product?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want my money back.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I request a refund?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I was charged for a service I didn't use.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I reverse this transaction?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to return my purchase.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How long does a refund take?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to dispute this charge.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get a partial refund?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I'm not satisfied with the service.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I reverse a completed payment?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to opt out and get my money back.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I initiate a chargeback?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I was double billed.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get store credit instead of cash?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to undo my purchase.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "The product never arrived, I want a refund.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I escalate this to a refund specialist?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to revoke my authorization.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I file a refund dispute?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I was charged without consent.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I get my deposit back?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to cancel and refund immediately.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "The service was not as described.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I speak to someone about my refund?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I need an emergency refund.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "How do I check my refund status?",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "I want to reverse a recurring charge.",
     "expected_intent": "refund_request",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "refund_request"
+    "category": "refund_request",
+    "relevant_docs": [
+      "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+      "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period."
+    ]
   },
   {
     "query": "Can I speak to a human agent?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need to talk to a real person.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can you transfer me to support?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I want to speak with a supervisor.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "This is urgent, I need human help.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I escalate to a manager?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need a human to review my case.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Please connect me to an agent.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I have a complex issue needing human review.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I get a live agent?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I don't want to talk to a bot anymore.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can a human call me back?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need to speak to customer service.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can you transfer this to a person?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need help from a real human.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I talk to someone now?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I want to speak to support staff.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can you escalate to a human?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need a person, not automation.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I get a phone number for support?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I want to chat with a human.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can someone contact me directly?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need human intervention.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can you route me to an agent?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I want to speak to someone in charge.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I get live help?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I need a human to fix this.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I be transferred now?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "I want to talk to customer care.",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   },
   {
     "query": "Can I speak to a human agent? (reference #29)",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
-    "category": "human_handoff"
+    "category": "human_handoff",
+    "relevant_docs": []
   }
 ]

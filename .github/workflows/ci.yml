@@ -37,6 +37,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install sentence-transformers==2.7.0 numpy==1.26.4
 
       - name: Run linting
         run: ruff check app tests scripts
@@ -84,6 +85,27 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install sentence-transformers==2.7.0 numpy==1.26.4
+
+      - name: Create database and pgvector extension
+        env:
+          DB_NAME: agent
+          DB_USER: postgres
+          DB_PASSWORD: 1234509876
+          DB_HOST: localhost
+          DB_PORT: 5432
+        run: python scripts/create_db.py
+
+      - name: Ingest documents into pgvector
+        env:
+          DB_NAME: agent
+          DB_USER: postgres
+          DB_PASSWORD: 1234509876
+          DB_HOST: localhost
+          DB_PORT: 5432
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: openai/gpt-oss-20b
+        run: python scripts/ingest_docs.py
 
       - name: Run benchmark evaluation gate
         env:

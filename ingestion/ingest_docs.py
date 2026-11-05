@@ -1,7 +1,13 @@
 """Ingest FAQ/policy documents into pgvector with real embeddings."""
 import asyncio
+import sys
 from pathlib import Path
-from app.agents.tools.vector_store import VectorStore
+
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from app.agents.tools.vector_store import VectorStore  # noqa: E402
 
 
 SAMPLE_DOCS = [

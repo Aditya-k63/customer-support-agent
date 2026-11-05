@@ -152,11 +152,6 @@ def mock_llm_generate(*args, **kwargs) -> str:
     return "general"
 
 
-async def mock_vector_search(*args, **kwargs) -> list[tuple[str, float]]:
-    """Mock vector search returning empty results."""
-    return []
-
-
 async def mock_create_ticket(*args, **kwargs) -> int:
     """Mock ticket creation that returns a fake ID without touching the DB."""
     return 999
@@ -204,9 +199,6 @@ async def main() -> int:
                 "app.services.llm.LLMService.generate",
                 new=AsyncMock(side_effect=mock_llm_generate),
             ), patch(
-                "app.agents.tools.vector_store.VectorStore.search_with_scores",
-                new=mock_vector_search,
-            ), patch(
                 "app.agents.tools.ticket_db.TicketDB.create_ticket",
                 new=mock_create_ticket,
             ), patch(
@@ -226,9 +218,7 @@ async def main() -> int:
         contexts.append(result.get("context", []))
         statuses.append(result.get("status", "open"))
         retrieved_docs.append(result.get("context", []))
-        # For v2, relevant docs are those matching the expected category
-        category = item.get("category", "general")
-        relevant_docs.append([f"{category}_doc_1", f"{category}_doc_2"])
+        relevant_docs.append(item.get("relevant_docs", []))
 
     # v1 metrics
     results = run_evaluation(
@@ -271,13 +261,13 @@ async def main() -> int:
 
     v2_thresholds = {
         **REGRESSION_THRESHOLDS,
-        "Response Groundedness": 0.0,
-        "Precision@3": 0.0,
-        "Recall@3": 0.0,
-        "MRR": 0.0,
+        "Response Groundedness": 0.70,
+        "Precision@3": 0.20,
+        "Recall@3": 0.30,
+        "MRR": 0.35,
         "Escalation Precision": 0.60,
         "Escalation Recall": 0.60,
-        "LLM-Judge Groundedness": 0.0,
+        "LLM-Judge Groundedness": 0.0,  # Mocked for v1 baseline; real in v2 with LLM
     }
 
     passed = save_results(all_results, thresholds=v2_thresholds, baseline=baseline)

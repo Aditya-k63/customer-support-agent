@@ -167,7 +167,29 @@ TEMPLATES = {
     ],
 }
 
-# Expected labels per category
+# Relevant documents per category (matching ingest_docs.py content)
+RELEVANT_DOCS = {
+    "billing": [
+        "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+        "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
+        "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period.",
+    ],
+    "technical": [
+        "Technical support: Reset your password at account settings or contact support@company.com.",
+        "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password.",
+    ],
+    "general": [
+        "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
+        "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
+        "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page.",
+    ],
+    "refund_request": [
+        "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
+        "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period.",
+    ],
+    "human_handoff": [],
+}
+
 EXPECTED = {
     "billing": {"intent": "billing", "escalate": True, "status": "in_progress"},
     "technical": {"intent": "technical", "escalate": False, "status": "resolved"},
@@ -195,6 +217,7 @@ def generate_golden_set() -> list[dict]:
                 "expected_escalate": EXPECTED[category]["escalate"],
                 "expected_status": EXPECTED[category]["status"],
                 "category": category,
+                "relevant_docs": RELEVANT_DOCS[category],
             })
     return golden_set
 
