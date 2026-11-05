@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.schemas.chat import ChatRequest, ChatResponse
 from app.schemas.ticket import TicketOut
-from app.core.security import verify_api_key
 from app.agents.graph import build_graph
 from app.db.base import get_db
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -13,7 +12,6 @@ router = APIRouter()
 async def chat(
     request: ChatRequest,
     db: AsyncSession = Depends(get_db),
-    _: bool = Depends(verify_api_key),
 ):
     """Main chat endpoint: processes user message through LangGraph agent."""
     graph = build_graph()
@@ -47,7 +45,6 @@ async def chat(
 async def get_ticket(
     ticket_id: int,
     db: AsyncSession = Depends(get_db),
-    _: bool = Depends(verify_api_key),
 ):
     """Get ticket details by ID."""
     from app.db.models import Ticket
@@ -66,7 +63,6 @@ async def get_ticket(
 async def list_tickets(
     status: str | None = None,
     db: AsyncSession = Depends(get_db),
-    _: bool = Depends(verify_api_key),
 ):
     """Admin endpoint: list tickets, optionally filtered by status."""
     from app.db.models import Ticket

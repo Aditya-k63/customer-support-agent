@@ -26,6 +26,12 @@ class Settings(BaseSettings):
 
     # API
     API_KEY: str = "dev-secret-change-in-production"
+    ALLOWED_HOSTS: str = "localhost,127.0.0.1,testserver"
+    CORS_ORIGINS: str = "http://localhost:3000"
+
+    # Rate Limiting
+    RATE_LIMIT_REQUESTS: int = 100
+    RATE_LIMIT_WINDOW: int = 60  # seconds
 
     # App
     ENVIRONMENT: str = "development"
