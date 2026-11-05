@@ -160,6 +160,11 @@ async def mock_add_conversation(*args, **kwargs) -> int:
     return 999
 
 
+async def mock_vector_search(*args, **kwargs) -> list[tuple[str, float]]:
+    """Mock vector search returning empty results."""
+    return []
+
+
 @pytest.mark.asyncio
 async def test_regression_intent_classification():
     """Intent classification accuracy must stay at or above v1 baseline threshold."""
@@ -181,6 +186,9 @@ async def test_regression_intent_classification():
         ), patch(
             "app.agents.tools.ticket_db.TicketDB.add_conversation",
             new=mock_add_conversation,
+        ), patch(
+            "app.agents.tools.vector_store.VectorStore.search_with_scores",
+            new=mock_vector_search,
         ):
             result = await graph.ainvoke(state)
         predicted = result.get("intent", "general")
@@ -222,6 +230,9 @@ async def test_regression_escalation_logic():
             ), patch(
                 "app.agents.tools.ticket_db.TicketDB.add_conversation",
                 new=mock_add_conversation,
+            ), patch(
+                "app.agents.tools.vector_store.VectorStore.search_with_scores",
+                new=mock_vector_search,
             ):
                 result = await graph.ainvoke(state)
             assert result.get("escalation_flag") is True, (
@@ -247,6 +258,9 @@ async def test_regression_ticket_status_non_escalated():
             ), patch(
                 "app.agents.tools.ticket_db.TicketDB.add_conversation",
                 new=mock_add_conversation,
+            ), patch(
+                "app.agents.tools.vector_store.VectorStore.search_with_scores",
+                new=mock_vector_search,
             ):
                 result = await graph.ainvoke(state)
             assert result.get("status") == "resolved", (

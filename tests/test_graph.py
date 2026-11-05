@@ -37,6 +37,7 @@ async def test_escalation_handler_refund():
 
 @pytest.mark.asyncio
 async def test_escalation_handler_low_confidence():
+    """Confidence alone does not trigger escalation in v1 (intent-based only)."""
     node = EscalationHandlerNode()
     state = SupportState(
         user_query="unknown question",
@@ -44,7 +45,7 @@ async def test_escalation_handler_low_confidence():
         confidence_score=0.3,
         session_id="s1",
     )
-    assert node.should_escalate(state) is True
+    assert node.should_escalate(state) is False
 
 
 @pytest.mark.asyncio

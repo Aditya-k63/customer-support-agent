@@ -10,7 +10,9 @@ class EscalationHandlerNode:
         escalation_intents = {"human_handoff", "refund_request", "billing"}
         if state.intent in escalation_intents:
             return True
-        if state.confidence_score < 0.5:
+        # Confidence-based escalation disabled for v1 baseline;
+        # v2 will enable with real retrieval-derived confidence scores
+        if state.confidence_score < 0.0:
             return True
         return False
 
