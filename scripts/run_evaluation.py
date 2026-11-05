@@ -157,6 +157,16 @@ async def mock_vector_search(*args, **kwargs) -> list[tuple[str, float]]:
     return []
 
 
+async def mock_create_ticket(*args, **kwargs) -> int:
+    """Mock ticket creation that returns a fake ID without touching the DB."""
+    return 999
+
+
+async def mock_add_conversation(*args, **kwargs) -> int:
+    """Mock conversation creation that returns a fake ID without touching the DB."""
+    return 999
+
+
 async def main() -> int:
     golden = load_golden_set()
     if not golden:
@@ -196,6 +206,12 @@ async def main() -> int:
             ), patch(
                 "app.agents.tools.vector_store.VectorStore.search_with_scores",
                 new=mock_vector_search,
+            ), patch(
+                "app.agents.tools.ticket_db.TicketDB.create_ticket",
+                new=mock_create_ticket,
+            ), patch(
+                "app.agents.tools.ticket_db.TicketDB.add_conversation",
+                new=mock_add_conversation,
             ):
                 result = await graph.ainvoke(initial_state)
         except Exception as exc:  # noqa: BLE001
