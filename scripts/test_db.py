@@ -2,30 +2,41 @@
 import asyncio
 import sys
 from pathlib import Path
-from sqlalchemy import select
+from sqlalchemy import select, text
 
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from app.db.base import engine, AsyncSessionLocal  # noqa: E402
-from app.db.models import Base, Ticket, DocumentChunk  # noqa: E402
+from app.db.base import AsyncSessionLocal  # noqa: E402
+from app.db.models import DocumentChunk  # noqa: E402
 from app.agents.tools.ticket_db import TicketDB  # noqa: E402
 
 
-async def create_tables() -> None:
-    """Create all tables defined in SQLAlchemy models."""
-    print("[SETUP] Creating database tables...")
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    print("[OK] Tables created: tickets, conversations, document_chunks")
+async def run_migrations() -> None:
+    """Run Alembic migrations to create/update database schema."""
+    print("[SETUP] Running Alembic migrations...")
+    from alembic import command
+    from alembic.config import Config
+
+    project_root = Path(__file__).resolve().parent.parent
+    alembic_ini_path = project_root / "alembic.ini"
+
+    alembic_cfg = Config(str(alembic_ini_path))
+    alembic_cfg.set_main_option(
+        "sqlalchemy.url",
+        "postgresql+asyncpg://postgres:1234509876@localhost:5432/agent",
+    )
+
+    command.upgrade(alembic_cfg, "head")
+    print("[OK] Migrations applied")
 
 
 async def test_connection() -> bool:
     """Verify we can connect to PostgreSQL and query."""
     print("[TEST] Database connection...")
     async with AsyncSessionLocal() as session:
-        await session.execute(select(Ticket).limit(1))
+        await session.execute(text("SELECT 1 FROM tickets LIMIT 1"))
         print("[OK] Database connection successful")
         return True
 
@@ -85,7 +96,7 @@ async def main() -> None:
     print("DATABASE TEST SUITE")
     print("=" * 50)
 
-    await create_tables()
+    await run_migrations()
     await test_connection()
     await test_ticket_persistence()
     await test_vector_chunk()

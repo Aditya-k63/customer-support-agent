@@ -18,3 +18,4 @@ ruff==0.6.0
 sentence-transformers==2.7.0
 numpy==1.26.4
 structlog==24.1.0
+alembic==1.13.1

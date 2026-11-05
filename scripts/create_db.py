@@ -46,6 +46,20 @@ async def create_database() -> None:
     finally:
         await conn.close()
 
+    # Run Alembic migrations to create schema
+    print("[SETUP] Running Alembic migrations...")
+    from alembic import command
+    from alembic.config import Config
+
+    alembic_cfg = Config(str(ROOT / "alembic.ini"))
+    alembic_cfg.set_main_option(
+        "sqlalchemy.url",
+        "postgresql+asyncpg://postgres:1234509876@localhost:5432/agent",
+    )
+
+    command.upgrade(alembic_cfg, "head")
+    print("[OK] Migrations applied")
+
 
 if __name__ == "__main__":
     asyncio.run(create_database())

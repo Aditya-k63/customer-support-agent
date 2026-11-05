@@ -49,6 +49,28 @@ app.add_middleware(
 )
 
 
+@app.on_event("startup")
+async def run_migrations():
+    """Run Alembic migrations on startup."""
+    from alembic import command
+    from alembic.config import Config
+    import os
+
+    # Find the alembic.ini file relative to the project root
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    alembic_ini_path = os.path.join(project_root, "alembic.ini")
+
+    alembic_cfg = Config(alembic_ini_path)
+    alembic_cfg.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+
+    try:
+        command.upgrade(alembic_cfg, "head")
+        logger.info("Database migrations applied successfully")
+    except Exception as exc:
+        logger.error("Failed to apply migrations", error=str(exc))
+        raise
+
+
 # Rate limiting middleware
 @app.middleware("http")
 async def rate_limit_middleware(request: Request, call_next):
