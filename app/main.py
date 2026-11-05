@@ -67,8 +67,8 @@ async def run_migrations():
         command.upgrade(alembic_cfg, "head")
         logger.info("Database migrations applied successfully")
     except Exception as exc:
-        logger.error("Failed to apply migrations", error=str(exc))
-        raise
+        logger.warning("Failed to apply migrations on startup", error=str(exc))
+        logger.warning("Migrations can be run manually with: alembic upgrade head")
 
 
 # Rate limiting middleware

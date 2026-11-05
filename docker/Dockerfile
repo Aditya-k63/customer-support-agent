@@ -36,7 +36,12 @@ COPY --from=builder $VIRTUAL_ENV $VIRTUAL_ENV
 
 # Copy application code
 COPY app/ ./app/
+COPY alembic/ ./alembic/
+COPY alembic.ini ./alembic.ini
 COPY docker/entrypoint.sh ./docker/entrypoint.sh
+
+# Make entrypoint executable
+RUN chmod +x docker/entrypoint.sh
 
 # Create non-root user
 RUN groupadd -r appuser && useradd -r -g appuser appuser \
