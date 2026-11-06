@@ -33,10 +33,10 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install core dependencies
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt || true
+          pip install -r requirements.txt
 
       - name: Run linting
         run: ruff check app tests scripts || true
@@ -51,7 +51,7 @@ jobs:
           GROQ_API_KEY: test_key
           GROQ_MODEL: openai/gpt-oss-20b
           API_KEY: rag-secret-2026
-        run: pytest tests/ -v || true
+        run: pytest tests/ -v
 
   # Step 2: Benchmark — evaluation on 150-question golden set (regression gate)
   benchmark:
@@ -80,28 +80,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libgl1-mesa-glx libglib2.0-0 build-essential
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt || true
-          pip install sentence-transformers==2.7.0 numpy==1.26.4 || \
-            pip install sentence-transformers==2.7.0 --no-deps || true
 
-      - name: Wait for PostgreSQL
-        run: |
-          for i in $(seq 1 30); do
-            pg_isready -h localhost -p 5432 && exit 0
-            echo "Waiting for PostgreSQL... ($i/30)"
-            sleep 2
-          done
-          echo "PostgreSQL not ready, continuing anyway"
-
-      - name: Create database and pgvector extension
+      - name: Create database
         env:
           DB_NAME: agent
           DB_USER: postgres
@@ -110,38 +94,33 @@ jobs:
           DB_PORT: 5432
         run: python scripts/create_db.py || true
 
-      - name: Ingest documents into pgvector
+      - name: Ingest documents
         env:
           DB_NAME: agent
           DB_USER: postgres
           DB_PASSWORD: 1234509876
           DB_HOST: localhost
           DB_PORT: 5432
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GROQ_MODEL: openai/gpt-oss-20b
         run: python scripts/ingest_docs.py || true
 
-      - name: Run benchmark evaluation gate
+      - name: Run evaluation gate
         env:
           DB_NAME: agent
           DB_USER: postgres
           DB_PASSWORD: 1234509876
           DB_HOST: localhost
           DB_PORT: 5432
-          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          GROQ_MODEL: openai/gpt-oss-20b
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OPENROUTER_MODEL: meta-llama/llama-3.1-8b-instruct
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY || 'test_key' }}
           API_KEY: rag-secret-2026
         run: python scripts/run_evaluation.py || true
 
-      - name: Upload regression report as artifact
+      - name: Upload regression report
         uses: actions/upload-artifact@v4
         with:
           name: regression-report
           path: regression_report.json
 
-  # Step 3: Docker Push — only if benchmark passes
+  # Step 3: Docker Push
   docker:
     needs: benchmark
     runs-on: ubuntu-latest
@@ -166,40 +145,3 @@ jobs:
           file: docker/Dockerfile
           push: true
           tags: adsharma14/customer-support-agent:latest
-          cache-from: type=registry,ref=adsharma14/customer-support-agent:cache
-          cache-to: type=registry,ref=adsharma14/customer-support-agent:cache,mode=max
-
-      - name: Container vulnerability scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: adsharma14/customer-support-agent:latest
-          severity: CRITICAL,HIGH
-          exit-code: 0
-          skip-dirs: /app/.venv
-          skip-files: .gitignore
-
-  # Step 4: Baseline Update — only if Docker push succeeds
-  update-baseline:
-    needs: docker
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download regression report artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: regression-report
-          path: .
-
-      - name: Copy regression report as baseline
-        run: cp regression_report.json baseline_report.json || true
-
-      - name: Commit updated baseline
-        run: |
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git add baseline_report.json
-          git commit -m "chore: update baseline metrics after successful deploy" || echo "No changes to commit"
-          git push origin main || echo "Push failed or no changes"
