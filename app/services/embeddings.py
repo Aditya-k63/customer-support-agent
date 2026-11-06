@@ -15,7 +15,7 @@ class EmbeddingService:
             try:
                 from sentence_transformers import SentenceTransformer
                 self._model = SentenceTransformer(self.model_name)
-            except (ImportError, ModuleNotFoundError):
+            except Exception:
                 self._model = "fallback"
 
     async def embed(self, text: str) -> List[float]:

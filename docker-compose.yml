@@ -10,7 +10,7 @@ services:
     depends_on:
       - db
     environment:
-      - DB_NAME=CRAG
+      - DB_NAME=agent
       - DB_USER=postgres
       - DB_PASSWORD=1234509876
       - DB_HOST=db
@@ -28,7 +28,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1234509876
-      - POSTGRES_DB=CRAG
+      - POSTGRES_DB=agent
     ports:
       - "5432:5432"
     volumes:
