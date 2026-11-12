@@ -18,6 +18,7 @@ nosetests.xml
 coverage.xml
 *.cover
 *.log
+*.exit
 .git
 .mypy_cache
 .pytest_cache
@@ -33,3 +34,5 @@ chroma_db/
 *.db
 *.sqlite
 regression_report.json
+regression_report_real.json
+real_eval_checkpoint.jsonl
