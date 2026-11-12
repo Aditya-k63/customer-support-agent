@@ -1,5 +1,6 @@
-"""Security utilities: API key validation, CORS, input sanitization, rate limiting."""
+"""Security utilities: API key validation, role checks, and rate limiting."""
 import asyncio
+import hmac
 import time
 from collections import defaultdict
 from typing import Dict
@@ -10,9 +11,16 @@ from app.core.config import settings
 
 security = HTTPBearer(auto_error=False)
 
+ROLE_CUSTOMER = "customer"
+ROLE_ADMIN = "admin"
+
 
 class RateLimiter:
-    """Simple in-memory rate limiter using sliding window."""
+    """Simple in-memory rate limiter using a sliding window.
+
+    This is process-local. For multi-worker or multi-replica deployments use a
+    shared backend (for example Redis) instead.
+    """
 
     def __init__(self, max_requests: int, window_seconds: int):
         self.max_requests = max_requests
@@ -24,7 +32,6 @@ class RateLimiter:
         """Check if a request is allowed for the given key."""
         async with self._lock:
             now = time.time()
-            # Clean old entries outside the window
             self._requests[key] = [
                 t for t in self._requests[key] if now - t < self.window_seconds
             ]
@@ -40,27 +47,37 @@ rate_limiter = RateLimiter(
 )
 
 
+def _token_matches(token: str, expected: str) -> bool:
+    """Constant-time comparison that rejects empty secrets."""
+    if not expected or not token:
+        return False
+    return hmac.compare_digest(token, expected)
+
+
 async def verify_api_key(
     credentials: HTTPAuthorizationCredentials | None = Depends(security),
-) -> bool:
-    """Validate bearer token against API_KEY."""
-    if settings.ENVIRONMENT == "development":
-        return True
-    if not credentials or credentials.credentials != settings.API_KEY:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or missing API key",
-        )
-    return True
+) -> str:
+    """Validate the bearer token and return the caller role.
+
+    There is deliberately no development bypass: every request to a protected
+    route must present a valid API key, regardless of ENVIRONMENT.
+    """
+    token = credentials.credentials if credentials else ""
+    if _token_matches(token, settings.ADMIN_API_KEY):
+        return ROLE_ADMIN
+    if _token_matches(token, settings.API_KEY):
+        return ROLE_CUSTOMER
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid or missing API key",
+    )
 
 
-async def rate_limit_dependency(request_id: str = "default") -> bool:
-    """Rate limiting dependency. Uses request ID as key for per-client limiting."""
-    allowed = await rate_limiter.is_allowed(request_id)
-    if not allowed:
+async def require_admin(role: str = Depends(verify_api_key)) -> str:
+    """Require an administrator API key."""
+    if role != ROLE_ADMIN:
         raise HTTPException(
-            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
-            detail="Rate limit exceeded. Please try again later.",
-            headers={"Retry-After": str(settings.RATE_LIMIT_WINDOW)},
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Administrator access required",
         )
-    return True
+    return role

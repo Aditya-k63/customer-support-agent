@@ -1,10 +1,18 @@
-from fastapi import APIRouter, Depends, HTTPException
-from app.schemas.chat import ChatRequest, ChatResponse
-from app.schemas.ticket import TicketOut
-from app.agents.graph import build_graph
-from app.db.base import get_db
+import structlog
+from fastapi import APIRouter, Depends, HTTPException, Query
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.agents.graph import build_graph
+from app.agents.tools.ticket_db import TicketDB
+from app.core.config import settings
+from app.core.security import require_admin
+from app.db.base import get_db
+from app.db.models import Ticket
+from app.schemas.chat import ChatRequest, ChatResponse
+from app.schemas.ticket import TicketOut
+
+logger = structlog.get_logger(__name__)
 router = APIRouter()
 
 
@@ -13,32 +21,47 @@ async def chat(
     request: ChatRequest,
     db: AsyncSession = Depends(get_db),
 ):
-    """Main chat endpoint: processes user message through LangGraph agent."""
+    """Process a user message through the LangGraph agent."""
+    ticket_db = TicketDB()
+    history = await ticket_db.get_conversation_history(
+        request.session_id, limit=settings.CONVERSATION_HISTORY_LIMIT
+    )
+
     graph = build_graph()
     initial_state = {
-        "messages": [],
+        "messages": history,
         "user_query": request.message,
         "intent": None,
         "context": [],
-        "confidence_score": 0.0,
+        "retrieved_doc_ids": [],
+        "retrieval_scores": [],
+        "retrieval_similarity": 0.0,
+        "answer_confidence": 0.0,
         "ticket_id": None,
         "status": "open",
         "escalation_flag": False,
         "session_id": request.session_id,
+        "response": "",
     }
 
     try:
         result = await graph.ainvoke(initial_state)
-        return ChatResponse(
-            response=result.get("response", "I'm sorry, I couldn't process your request."),
-            ticket_id=result.get("ticket_id"),
-            status=result.get("status", "open"),
-            intent=result.get("intent"),
-            escalated=result.get("escalation_flag", False),
-            confidence=result.get("confidence_score", 0.0),
+    except Exception:
+        logger.exception("chat_failed", session_id=request.session_id)
+        raise HTTPException(
+            status_code=500, detail="An internal error occurred while processing the request."
         )
-    except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
+
+    return ChatResponse(
+        response=result.get("response", "I'm sorry, I couldn't process your request."),
+        ticket_id=result.get("ticket_id"),
+        status=result.get("status", "open"),
+        intent=result.get("intent"),
+        escalated=result.get("escalation_flag", False),
+        retrieval_similarity=result.get("retrieval_similarity", 0.0),
+        answer_confidence=result.get("answer_confidence", 0.0),
+        sources=result.get("retrieved_doc_ids", []),
+    )
 
 
 @router.get("/tickets/{ticket_id}", response_model=TicketOut)
@@ -47,9 +70,6 @@ async def get_ticket(
     db: AsyncSession = Depends(get_db),
 ):
     """Get ticket details by ID."""
-    from app.db.models import Ticket
-    from sqlalchemy import select
-
     stmt = select(Ticket).where(Ticket.id == ticket_id)
     result = await db.execute(stmt)
     ticket = result.scalar_one_or_none()
@@ -61,16 +81,13 @@ async def get_ticket(
 
 @router.get("/admin/tickets")
 async def list_tickets(
-    status: str | None = None,
+    status_filter: str | None = Query(default=None, alias="status"),
     db: AsyncSession = Depends(get_db),
+    _role: str = Depends(require_admin),
 ):
     """Admin endpoint: list tickets, optionally filtered by status."""
-    from app.db.models import Ticket
-    from sqlalchemy import select
-
     stmt = select(Ticket)
-    if status:
-        stmt = stmt.where(Ticket.status == status)
+    if status_filter:
+        stmt = stmt.where(Ticket.status == status_filter)
     result = await db.execute(stmt)
-    tickets = result.scalars().all()
-    return tickets
+    return result.scalars().all()
