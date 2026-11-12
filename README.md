@@ -68,7 +68,7 @@ An **agentic customer support system** built with **LangGraph**, **RAG**, and **
 **Backend:** FastAPI, Python 3.12, Pydantic v2  
 **Agent Framework:** LangGraph, LangChain  
 **Database:** PostgreSQL, pgvector (HNSW cosine index)  
-**LLM Provider:** Groq (`openai/gpt-oss-20b`) with OpenRouter fallback  
+**LLM Provider:** Groq (`openai/gpt-oss-20b`) with OpenRouter fallback, or a single pinned provider via `LLM_PROVIDER`  
 **Embeddings:** `sentence-transformers` (`all-MiniLM-L6-v2`, 384 dimensions)  
 **Deployment:** Docker, Docker Compose  
 **CI/CD:** GitHub Actions (lint + unit tests + deterministic regression gate)  
@@ -137,9 +137,38 @@ Requires PostgreSQL + pgvector, `requirements-embeddings.txt`, and an LLM key. I
 
 Individual query failures are caught, logged, and excluded from the metrics; the report records them under `failed_queries` along with `evaluated_queries`, and the gate fails if the failure rate exceeds the tolerance.
 
+#### Running against a rate-limited provider
+
+The harness is built for providers with hard quotas (free tiers) rather than for an unlimited endpoint:
+
+- **Resumable.** Every finished query is appended to `real_eval_checkpoint.jsonl`. Re-running the same command reuses the checkpointed results and only evaluates the missing queries. `REAL_EVAL_RESET=1` starts over.
+- **Quota-aware.** The LLM client records the provider's `x-ratelimit-*` headers, so the run stops before it spends the remaining daily quota on requests that are bound to be rejected, and the report includes the quota snapshot.
+- **Self-paced.** The delay between queries is derived from the tokens the previous query actually consumed (`REAL_EVAL_TOKEN_BUDGET`), so a reasoning model with an unpredictable token cost cannot outrun the per-minute token limit.
+- **Slicable.** `REAL_EVAL_START` / `REAL_EVAL_END` evaluate a range of the suite; indices stay global, so slices never overwrite each other's checkpoints.
+- **Provider pinning.** `LLM_PROVIDER=auto|groq|openrouter` selects which provider is used. `auto` uses Groq and falls back to OpenRouter; the other values pin a single provider, which is how a full suite is run against a provider with a known quota.
+
+#### Environment variables
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `LLM_PROVIDER` | `auto` | `auto`, `groq` or `openrouter` |
+| `REAL_EVAL_LIMIT` | `0` | Evaluate an evenly sampled subset of the suite |
+| `REAL_EVAL_START` / `REAL_EVAL_END` | full suite | Evaluate a slice of the suite |
+| `REAL_EVAL_JUDGE_SAMPLE` | `20` | Number of answers sent to the LLM judge |
+| `REAL_EVAL_DELAY` | `1.0` | Minimum seconds between queries |
+| `REAL_EVAL_TOKEN_BUDGET` | `5000` | Provider tokens the harness allows per minute |
+| `REAL_EVAL_REQUEST_RESERVE` | `30` | Provider requests kept back for the judge phase |
+| `REAL_EVAL_MAX_FAILURE_RATE` | `0.05` | Failed-query share that fails the gate |
+| `REAL_EVAL_CHECKPOINT` | `real_eval_checkpoint.jsonl` | Checkpoint file |
+| `REAL_EVAL_RESET` | `0` | `1` discards the checkpoint before running |
+
 ### Known evaluation limitation
 
-The bundled knowledge base is an 8-document demo corpus. Many golden-set questions are therefore outside its coverage, so the real evaluation reports a modest **Answer Rate** and a high refusal rate even though groundedness among answered questions is high. Expanding the corpus is the next data task; the harness itself is complete.
+The corpus is a demo: 14 policy documents that cover the five intent categories, while the golden set asks 150 questions. The 30 human-handoff questions are escalation cases with no answerable document, so they are excluded from the retrieval metrics. Coverage of the remaining questions is good, but the corpus is still small enough that answer quality is limited by how much detail each policy document carries.
+
+Retrieval is semantic only (no keyword or hybrid stage), so paraphrases occasionally pull in a neighbouring policy instead of the exact one — for example "I was double billed" retrieves the payment-methods document instead of the refund policy. Recall@3 stays high because the correct document usually appears in the top three, but Precision@3 reflects that the retriever returns plausible neighbours rather than only the labelled document. Hybrid retrieval is the next improvement.
+
+The harness, the metrics and the gates are complete.
 
 ---
 

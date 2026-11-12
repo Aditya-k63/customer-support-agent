@@ -58,8 +58,15 @@ MAX_FAILURE_RATE = float(os.getenv("REAL_EVAL_MAX_FAILURE_RATE", "0.05"))
 REQUEST_RESERVE = int(os.getenv("REAL_EVAL_REQUEST_RESERVE", "30"))
 # Provider tokens allowed per minute. The harness paces itself against this
 # budget instead of guessing a fixed delay, because reasoning models spend a
-# variable number of tokens per query.
-TOKEN_BUDGET_PER_MINUTE = int(os.getenv("REAL_EVAL_TOKEN_BUDGET", "5000"))
+# variable number of tokens per query. Providers without a per-minute token
+# limit (OpenRouter) do not need token pacing, so the default follows the
+# selected provider.
+TOKEN_BUDGET_PER_MINUTE = int(
+    os.getenv(
+        "REAL_EVAL_TOKEN_BUDGET",
+        "5000" if getattr(settings, "LLM_PROVIDER", "auto") != "openrouter" else "0",
+    )
+)
 # Free-tier providers often run out of quota mid-suite. Each finished query is
 # appended here so a later run resumes instead of starting over.
 CHECKPOINT_PATH = ROOT / os.getenv(
