@@ -180,6 +180,12 @@ async def main() -> int:
     if (start, end) != (0, len(golden)):
         print(f"[INFO] evaluating slice [{start}, {end}) of {len(golden)} queries")
 
+    provider = getattr(settings, "LLM_PROVIDER", "auto").strip().lower()
+    if provider == "openrouter" or (provider == "auto" and not settings.GROQ_API_KEY):
+        llm_provider, llm_model = "openrouter", settings.OPENROUTER_MODEL
+    else:
+        llm_provider, llm_model = "groq", settings.GROQ_MODEL
+
     graph = build_graph()
     judge = LLMJudge()
 
@@ -193,14 +199,12 @@ async def main() -> int:
     stopped_reason: str | None = None
 
     for index, item in selected:
-        if (
-            QUOTA.remaining_requests is not None
-            and QUOTA.remaining_requests <= REQUEST_RESERVE
-        ):
+        remaining = QUOTA.remaining_requests(llm_provider)
+        if remaining is not None and remaining <= REQUEST_RESERVE:
             stopped_reason = "provider_quota_reserve"
             print(
-                f"[WARN] stopping early: only {QUOTA.remaining_requests} provider "
-                f"requests left (reserve {REQUEST_RESERVE})"
+                f"[WARN] stopping early: only {remaining} provider requests "
+                f"left (reserve {REQUEST_RESERVE})"
             )
             break
         cached = checkpoints.get(index)
@@ -208,7 +212,7 @@ async def main() -> int:
             reused += 1
             continue
         try:
-            tokens_before = QUOTA.total_tokens
+            tokens_before = QUOTA.total_tokens(llm_provider)
             record = await evaluate_query(graph, item, index)
         except LLMQuotaExhaustedError as exc:
             stopped_reason = "provider_quota_exhausted"
@@ -227,10 +231,12 @@ async def main() -> int:
         if (index + 1) % 10 == 0:
             print(f"[INFO] evaluated {index + 1}/{end} queries")
         # Pace against the provider's per-minute token budget.
-        query_tokens = QUOTA.total_tokens - tokens_before
+        query_tokens = QUOTA.total_tokens(llm_provider) - tokens_before
         paced_delay = max(
             QUERY_DELAY_SECONDS,
-            query_tokens * 60 / TOKEN_BUDGET_PER_MINUTE if TOKEN_BUDGET_PER_MINUTE else 0,
+            query_tokens * 60 / TOKEN_BUDGET_PER_MINUTE
+            if TOKEN_BUDGET_PER_MINUTE
+            else 0,
         )
         if paced_delay > 0:
             await asyncio.sleep(paced_delay)
@@ -340,12 +346,6 @@ async def main() -> int:
             f"within the {MAX_FAILURE_RATE:.1%} tolerance; metrics exclude them"
         )
 
-    provider = getattr(settings, "LLM_PROVIDER", "auto").strip().lower()
-    if provider == "openrouter" or (provider == "auto" and not settings.GROQ_API_KEY):
-        llm_provider, llm_model = "openrouter", settings.OPENROUTER_MODEL
-    else:
-        llm_provider, llm_model = "groq", settings.GROQ_MODEL
-
     report = {
         "suite": "real",
         "retrieval_backend": "pgvector",
@@ -359,7 +359,7 @@ async def main() -> int:
         "resumed_queries": reused,
         "failed_queries": failures,
         "stopped_reason": stopped_reason,
-        "provider_quota": QUOTA.snapshot(),
+        "provider_quota": QUOTA.snapshot(llm_provider),
         # "results" keeps this artifact compatible with baseline comparison.
         "results": [
             {

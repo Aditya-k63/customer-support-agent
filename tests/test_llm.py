@@ -111,21 +111,35 @@ def test_parse_duration_reads_groq_reset_header():
 
 
 def test_quota_tracker_reports_exhaustion(monkeypatch):
-    monkeypatch.setattr(QUOTA, "remaining_requests", None)
-    assert QUOTA.exhausted is False
+    monkeypatch.setattr(QUOTA, "providers", {})
 
-    QUOTA.record_response({"x-ratelimit-remaining-requests": "0"})
-    assert QUOTA.exhausted is True
+    assert QUOTA.exhausted("groq") is False
 
-    QUOTA.record_response({"x-ratelimit-remaining-requests": "12"})
-    assert QUOTA.exhausted is False
-    assert QUOTA.snapshot()["remaining_requests"] == 12
+    QUOTA.record_response("groq", {"x-ratelimit-remaining-requests": "0"})
+    assert QUOTA.exhausted("groq") is True
+
+    QUOTA.record_response("groq", {"x-ratelimit-remaining-requests": "12"})
+    assert QUOTA.exhausted("groq") is False
+    assert QUOTA.remaining_requests("groq") == 12
+    assert QUOTA.snapshot("groq")["remaining_requests"] == 12
+
+
+def test_quota_is_tracked_per_provider(monkeypatch):
+    monkeypatch.setattr(QUOTA, "providers", {})
+
+    QUOTA.record_response("groq", {"x-ratelimit-remaining-requests": "0"})
+
+    # An exhausted Groq window must not stop a run that continues on the
+    # fallback provider.
+    assert QUOTA.exhausted("groq") is True
+    assert QUOTA.exhausted("openrouter") is False
+    assert QUOTA.remaining_requests("openrouter") is None
 
 
 @pytest.mark.asyncio
 async def test_generate_stops_retrying_when_window_quota_is_spent(monkeypatch):
     service = _service(monkeypatch)
-    monkeypatch.setattr(QUOTA, "remaining_requests", None)
+    monkeypatch.setattr(QUOTA, "providers", {})
     calls = {"count": 0}
 
     async def rate_limited(prompt, model, temperature, max_tokens):
