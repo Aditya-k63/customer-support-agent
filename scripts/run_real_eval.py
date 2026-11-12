@@ -46,7 +46,11 @@ from app.evaluation.metrics_v2 import (  # noqa: E402
     recall_at_k,
 )
 from app.evaluation.suite import load_golden_set  # noqa: E402
-from app.services.llm import QUOTA, LLMQuotaExhaustedError  # noqa: E402
+from app.services.llm import (  # noqa: E402
+    QUOTA,
+    LLMProviderUnavailableError,
+    LLMQuotaExhaustedError,
+)
 
 JUDGE_SAMPLE_SIZE = int(os.getenv("REAL_EVAL_JUDGE_SAMPLE", "20"))
 # Pause between queries to stay under free-tier rate limits.
@@ -218,6 +222,12 @@ async def main() -> int:
             stopped_reason = "provider_quota_exhausted"
             print(f"[WARN] provider quota exhausted at query {index + 1}: {exc}")
             break
+        except LLMProviderUnavailableError as exc:
+            # No credit, invalid key or no permission: every further request
+            # would fail the same way, so stop and let the run resume later.
+            stopped_reason = "provider_unavailable"
+            print(f"[WARN] provider unavailable at query {index + 1}: {exc}")
+            break
         except Exception as exc:  # noqa: BLE001 - keep the suite running
             failures.append(
                 {"query": item["query"], "error": f"{type(exc).__name__}: {exc}"}
@@ -293,6 +303,10 @@ async def main() -> int:
     except LLMQuotaExhaustedError:
         print("[WARN] provider quota exhausted during judging; skipping judge metrics")
         stopped_reason = stopped_reason or "provider_quota_exhausted"
+        verdicts = []
+    except LLMProviderUnavailableError as exc:
+        print(f"[WARN] provider unavailable during judging: {exc}")
+        stopped_reason = stopped_reason or "provider_unavailable"
         verdicts = []
     supported = sum(1 for verdict in verdicts if verdict == SUPPORTED)
     unsupported = sum(1 for verdict in verdicts if verdict == UNSUPPORTED)

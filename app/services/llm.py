@@ -14,11 +14,23 @@ MIN_RETRY_TOKENS = 512
 # Transient responses worth retrying with exponential backoff.
 RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
 
+# Responses that mean the provider will not serve the request at all: the
+# key is invalid or the account has no credit left. Retrying cannot help.
+FATAL_STATUS_CODES = {401, 402, 403}
+
 _DURATION_PATTERN = re.compile(r"(\d+(?:\.\d+)?)(ms|h|m|s)")
 
 
 class LLMQuotaExhaustedError(RuntimeError):
     """The provider has no request quota left for the current window."""
+
+
+class LLMProviderUnavailableError(RuntimeError):
+    """The provider refused the request for a reason that retrying cannot fix.
+
+    Raised for authentication, credit and permission failures, where every
+    further request would also fail.
+    """
 
 
 def _parse_duration(value: str | None) -> float | None:
@@ -162,6 +174,11 @@ class LLMService:
                     return await provider_call()
                 except httpx.HTTPStatusError as exc:
                     last_error = exc
+                    if exc.response.status_code in FATAL_STATUS_CODES:
+                        raise LLMProviderUnavailableError(
+                            f"provider rejected the request with status "
+                            f"{exc.response.status_code}"
+                        ) from exc
                     if exc.response.status_code not in RETRYABLE_STATUS_CODES:
                         raise
                     self.quota.record_response(provider, exc.response.headers)
@@ -193,6 +210,7 @@ class LLMService:
                 httpx.HTTPStatusError,
                 httpx.TransportError,
                 LLMQuotaExhaustedError,
+                LLMProviderUnavailableError,
             ):
                 # Fall back to OpenRouter when configured; otherwise surface
                 # the original provider error.
