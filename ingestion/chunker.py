@@ -12,7 +12,7 @@ def chunk_text(
     ``chunk_size`` and ``overlap`` are measured in words. A document shorter
     than ``chunk_size`` is returned unchanged.
     """
-    chunk_size = chunk_size or settings.CHUNK_SIZE
+    chunk_size = settings.CHUNK_SIZE if chunk_size is None else chunk_size
     overlap = settings.CHUNK_OVERLAP if overlap is None else overlap
     if chunk_size <= 0:
         raise ValueError("chunk_size must be positive")

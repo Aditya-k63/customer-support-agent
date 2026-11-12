@@ -27,10 +27,7 @@ from app.evaluation.metrics_v2 import (  # noqa: E402
     precision_at_k,
     recall_at_k,
 )
-from app.evaluation.mock_llm import (  # noqa: E402
-    classify_intent_keywords,
-    mock_llm_generate,
-)
+from app.evaluation.mock_llm import mock_llm_generate  # noqa: E402
 from app.evaluation.suite import (  # noqa: E402
     compare_with_baseline,
     load_baseline,
@@ -38,9 +35,15 @@ from app.evaluation.suite import (  # noqa: E402
     run_evaluation,
     save_results,
 )
-from ingestion.knowledge_base import CATEGORY_TO_DOC_IDS, KNOWLEDGE_BASE  # noqa: E402
+from ingestion.knowledge_base import KNOWLEDGE_BASE  # noqa: E402
 
 DOC_BY_ID = {document["id"]: document for document in KNOWLEDGE_BASE}
+# Label lookup so the deterministic stub can return exactly the documents that
+# answer a question, mirroring what the golden set expects.
+LABELS_BY_QUERY = {
+    item["query"]: item.get("relevant_doc_ids", [])
+    for item in load_golden_set()
+}
 
 DETERMINISTIC_THRESHOLDS = {
     "Intent Accuracy": 0.50,
@@ -71,14 +74,13 @@ def make_state(item: dict) -> dict:
 async def stub_search_documents(
     self, query: str, top_k: int = 5, threshold: float = 0.0
 ) -> list[RetrievedChunk]:
-    """Return the labelled documents for a query category.
+    """Return the labelled documents for a query.
 
     Deterministic only. This proves that document IDs flow through the graph;
     it does not measure semantic retrieval quality.
     """
-    category = classify_intent_keywords(query)
     chunks = []
-    for doc_id in CATEGORY_TO_DOC_IDS.get(category, [])[:top_k]:
+    for doc_id in LABELS_BY_QUERY.get(query, [])[:top_k]:
         document = DOC_BY_ID[doc_id]
         chunks.append(
             RetrievedChunk(

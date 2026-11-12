@@ -6,9 +6,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -18,9 +16,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -30,9 +26,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -42,9 +36,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -54,9 +46,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -66,9 +56,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -78,9 +66,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -90,8 +76,6 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -102,9 +86,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -114,9 +96,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -126,8 +106,6 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -138,9 +116,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -150,9 +126,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -162,9 +136,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -174,9 +146,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -186,9 +156,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -198,9 +166,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -210,9 +176,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -222,8 +186,6 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -234,9 +196,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -246,8 +206,6 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -258,9 +216,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -270,9 +226,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -282,9 +236,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -294,9 +246,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -306,9 +256,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "billing_invoices"
     ]
   },
   {
@@ -318,9 +266,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -330,9 +276,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -342,9 +286,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "live_chat"
     ]
   },
   {
@@ -354,9 +296,7 @@
     "expected_status": "in_progress",
     "category": "billing",
     "relevant_doc_ids": [
-      "billing_invoices",
-      "refund_policy",
-      "subscription_cancellation"
+      "plans_pricing"
     ]
   },
   {
@@ -366,7 +306,6 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
       "password_reset"
     ]
   },
@@ -377,18 +316,16 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
-    "query": "How do I reset my password?",
+    "query": "How do I reset my password? (reference #2)",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
       "password_reset"
     ]
   },
@@ -399,8 +336,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -410,8 +346,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -421,8 +356,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -432,8 +366,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -443,8 +376,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -454,8 +386,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -465,8 +396,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -476,8 +406,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -487,8 +416,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -498,8 +426,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_management"
     ]
   },
   {
@@ -509,8 +436,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -520,8 +446,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -531,8 +456,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_management"
     ]
   },
   {
@@ -542,8 +466,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -553,8 +476,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -564,8 +486,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -575,8 +496,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -586,8 +506,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "email_verification"
     ]
   },
   {
@@ -597,8 +516,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -608,8 +526,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -619,8 +536,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -630,8 +546,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -641,8 +556,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -652,8 +566,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "account_access"
     ]
   },
   {
@@ -663,8 +576,7 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -674,19 +586,17 @@
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
-    "query": "How do I reset my password? (reference #29)",
+    "query": "The form won't submit. (reference #29)",
     "expected_intent": "technical",
     "expected_escalate": false,
     "expected_status": "resolved",
     "category": "technical",
     "relevant_doc_ids": [
-      "technical_support",
-      "password_reset"
+      "technical_support"
     ]
   },
   {
@@ -696,9 +606,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "business_hours"
     ]
   },
   {
@@ -708,8 +616,6 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
       "order_tracking"
     ]
   },
@@ -720,9 +626,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "business_hours"
     ]
   },
   {
@@ -732,9 +636,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "live_chat"
     ]
   },
   {
@@ -744,9 +646,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "refund_policy"
     ]
   },
   {
@@ -756,9 +656,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "shipping"
     ]
   },
   {
@@ -768,9 +666,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "shipping"
     ]
   },
   {
@@ -780,9 +676,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "shipping"
     ]
   },
   {
@@ -792,9 +686,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -804,9 +696,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -816,9 +706,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "technical_support"
     ]
   },
   {
@@ -828,9 +716,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -840,9 +726,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "shipping"
     ]
   },
   {
@@ -852,9 +736,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "email_verification"
     ]
   },
   {
@@ -864,9 +746,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "plans_pricing"
     ]
   },
   {
@@ -876,9 +756,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -888,9 +766,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -900,9 +776,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -912,9 +786,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "live_chat"
     ]
   },
   {
@@ -924,9 +796,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "account_management"
     ]
   },
   {
@@ -936,9 +806,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "refund_policy"
     ]
   },
   {
@@ -948,9 +816,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "plans_pricing"
     ]
   },
   {
@@ -960,9 +826,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "plans_pricing"
     ]
   },
   {
@@ -972,9 +836,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "plans_pricing"
     ]
   },
   {
@@ -984,9 +846,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "plans_pricing"
     ]
   },
   {
@@ -996,9 +856,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "live_chat"
     ]
   },
   {
@@ -1008,9 +866,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "live_chat"
     ]
   },
   {
@@ -1020,9 +876,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "live_chat"
     ]
   },
   {
@@ -1032,9 +886,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "live_chat"
     ]
   },
   {
@@ -1044,9 +896,7 @@
     "expected_status": "resolved",
     "category": "general",
     "relevant_doc_ids": [
-      "business_hours",
-      "shipping",
-      "order_tracking"
+      "technical_support"
     ]
   },
   {
@@ -1056,8 +906,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1067,7 +916,6 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -1078,8 +926,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1089,8 +936,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1100,8 +946,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1111,8 +956,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1122,8 +966,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1133,8 +976,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1144,8 +986,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1155,8 +996,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1166,8 +1006,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1177,8 +1016,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1188,8 +1026,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1199,7 +1036,6 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -1210,8 +1046,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1221,8 +1056,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1232,8 +1066,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1243,8 +1076,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1254,8 +1086,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1265,8 +1096,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "live_chat"
     ]
   },
   {
@@ -1276,8 +1106,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "payment_methods"
     ]
   },
   {
@@ -1287,8 +1116,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1298,8 +1126,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1309,8 +1136,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1320,7 +1146,6 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -1331,8 +1156,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1342,8 +1166,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "live_chat"
     ]
   },
   {
@@ -1353,8 +1176,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1364,8 +1186,7 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
-      "subscription_cancellation"
+      "refund_policy"
     ]
   },
   {
@@ -1375,7 +1196,6 @@
     "expected_status": "in_progress",
     "category": "refund_request",
     "relevant_doc_ids": [
-      "refund_policy",
       "subscription_cancellation"
     ]
   },
@@ -1612,7 +1432,7 @@
     "relevant_doc_ids": []
   },
   {
-    "query": "Can I speak to a human agent? (reference #29)",
+    "query": "Can I get a manager on the phone?",
     "expected_intent": "human_handoff",
     "expected_escalate": true,
     "expected_status": "in_progress",
