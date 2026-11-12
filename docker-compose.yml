@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   api:
     build:
@@ -8,31 +6,40 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      - DB_NAME=agent
-      - DB_USER=postgres
-      - DB_PASSWORD=1234509876
-      - DB_HOST=db
-      - DB_PORT=5432
-      - GROQ_API_KEY=${GROQ_API_KEY}
-      - GROQ_MODEL=${GROQ_MODEL}
-      - API_KEY=${API_KEY}
-      - ENVIRONMENT=development
-    volumes:
-      - ./app:/app/app
+      DB_NAME: ${DB_NAME:-agent}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set}
+      DB_HOST: db
+      DB_PORT: 5432
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-meta-llama/llama-3.1-8b-instruct}
+      API_KEY: ${API_KEY:?API_KEY must be set}
+      ADMIN_API_KEY: ${ADMIN_API_KEY:-}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      ENVIRONMENT: ${ENVIRONMENT:-production}
     restart: unless-stopped
 
   db:
     image: ankane/pgvector:latest
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234509876
-      - POSTGRES_DB=agent
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set}
+      POSTGRES_DB: ${DB_NAME:-agent}
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-agent}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: unless-stopped
 
 volumes:

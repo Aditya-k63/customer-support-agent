@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from app.core.config import settings  # noqa: E402
 from app.db.base import AsyncSessionLocal  # noqa: E402
 from app.db.models import DocumentChunk  # noqa: E402
 from app.agents.tools.ticket_db import TicketDB  # noqa: E402
@@ -16,19 +17,17 @@ from app.agents.tools.ticket_db import TicketDB  # noqa: E402
 async def run_migrations() -> None:
     """Run Alembic migrations to create/update database schema."""
     print("[SETUP] Running Alembic migrations...")
-    from alembic import command
     from alembic.config import Config
+
+    from app.db.migrations import upgrade_database
 
     project_root = Path(__file__).resolve().parent.parent
     alembic_ini_path = project_root / "alembic.ini"
 
     alembic_cfg = Config(str(alembic_ini_path))
-    alembic_cfg.set_main_option(
-        "sqlalchemy.url",
-        "postgresql+asyncpg://postgres:1234509876@localhost:5432/agent",
-    )
+    alembic_cfg.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 
-    command.upgrade(alembic_cfg, "head")
+    upgrade_database(alembic_cfg)
     print("[OK] Migrations applied")
 
 
@@ -47,7 +46,8 @@ async def test_ticket_persistence() -> None:
     ticket_db = TicketDB()
 
     # Create
-    ticket_id = await ticket_db.create_ticket(
+    ticket_id = await ticket_db.get_or_create_ticket(
+        session_id="test-db-session",
         title="Test refund request",
         status="open",
         intent="refund_request",

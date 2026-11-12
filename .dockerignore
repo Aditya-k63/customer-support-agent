@@ -47,5 +47,4 @@ README.md
 .github/
 docker-compose.yml
 
-# Docker
-docker/
+# Docker build inputs (Dockerfile and entrypoint) must remain in the context.

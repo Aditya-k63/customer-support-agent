@@ -1,92 +1,78 @@
-"""Create the 'agent' database if it doesn't exist."""
+"""Create the configured database, install pgvector, and run migrations."""
 import asyncio
-import asyncpg
 import sys
 from pathlib import Path
+
+import asyncpg
 
 ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from app.core.config import settings  # noqa: E402
 
-async def wait_for_postgres(max_retries=30, delay=2):
-    """Wait for PostgreSQL to be ready."""
-    for i in range(max_retries):
+
+async def connect_admin() -> asyncpg.Connection:
+    last_error: Exception | None = None
+    for attempt in range(1, settings.DB_CONNECT_RETRIES + 1):
         try:
-            conn = await asyncpg.connect(
-                user="postgres",
-                password="1234509876",
-                host="localhost",
-                port=5432,
-                database="postgres",
+            return await asyncpg.connect(
+                user=settings.DB_USER,
+                password=settings.DB_PASSWORD,
+                host=settings.DB_HOST,
+                port=settings.DB_PORT,
+                database=settings.DB_ADMIN_DB,
                 timeout=5,
             )
-            await conn.close()
-            print("[OK] PostgreSQL is ready")
-            return True
-        except Exception:
-            print(f"[INFO] Waiting for PostgreSQL... ({i+1}/{max_retries})")
-            await asyncio.sleep(delay)
-    print("[WARN] PostgreSQL not ready, proceeding anyway")
-    return False
+        except Exception as exc:  # noqa: BLE001
+            last_error = exc
+            print(
+                f"[INFO] Waiting for PostgreSQL "
+                f"({attempt}/{settings.DB_CONNECT_RETRIES})"
+            )
+            await asyncio.sleep(settings.DB_CONNECT_DELAY)
+    raise RuntimeError(f"PostgreSQL was not reachable: {last_error}")
+
+
+async def connect_target() -> asyncpg.Connection:
+    return await asyncpg.connect(
+        user=settings.DB_USER,
+        password=settings.DB_PASSWORD,
+        host=settings.DB_HOST,
+        port=settings.DB_PORT,
+        database=settings.DB_NAME,
+    )
 
 
 async def create_database() -> None:
-    # Wait for PostgreSQL to be ready
-    await wait_for_postgres()
-
-    # Connect to the default 'postgres' database to create our new one
-    conn = await asyncpg.connect(
-        user="postgres",
-        password="1234509876",
-        host="localhost",
-        port=5432,
-        database="postgres",
-    )
-
+    conn = await connect_admin()
     try:
-        # Check if 'agent' exists
-        result = await conn.fetch(
-            "SELECT 1 FROM pg_database WHERE datname = $1", "agent"
+        exists = await conn.fetch(
+            "SELECT 1 FROM pg_database WHERE datname = $1", settings.DB_NAME
         )
-        if result:
-            print("[INFO] Database 'agent' already exists")
+        if exists:
+            print(f"[INFO] Database '{settings.DB_NAME}' already exists")
         else:
-            await conn.execute('CREATE DATABASE agent')
-            print("[OK] Database 'agent' created successfully")
-
-        # Install pgvector extension in the 'agent' database
-        agent_conn = await asyncpg.connect(
-            user="postgres",
-            password="1234509876",
-            host="localhost",
-            port=5432,
-            database="agent",
-        )
-        try:
-            await agent_conn.execute("CREATE EXTENSION IF NOT EXISTS vector")
-            print("[OK] pgvector extension installed in 'agent'")
-        finally:
-            await agent_conn.close()
+            await conn.execute(f'CREATE DATABASE "{settings.DB_NAME}"')
+            print(f"[OK] Database '{settings.DB_NAME}' created")
     finally:
         await conn.close()
 
-    # Run Alembic migrations to create schema
-    print("[SETUP] Running Alembic migrations...")
-    from alembic import command
+    target = await connect_target()
+    try:
+        await target.execute("CREATE EXTENSION IF NOT EXISTS vector")
+        print(f"[OK] pgvector installed in '{settings.DB_NAME}'")
+    finally:
+        await target.close()
+
     from alembic.config import Config
 
-    alembic_cfg = Config(str(ROOT / "alembic.ini"))
-    alembic_cfg.set_main_option(
-        "sqlalchemy.url",
-        "postgresql+asyncpg://postgres:1234509876@localhost:5432/agent",
-    )
+    from app.db.migrations import upgrade_database
 
-    try:
-        command.upgrade(alembic_cfg, "head")
-        print("[OK] Migrations applied")
-    except Exception as exc:
-        print(f"[WARN] Migration warning: {exc}")
+    alembic_cfg = Config(str(ROOT / "alembic.ini"))
+    alembic_cfg.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
+    upgrade_database(alembic_cfg)
+    print("[OK] Alembic migrations applied")
 
 
 if __name__ == "__main__":
