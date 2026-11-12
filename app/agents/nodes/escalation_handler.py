@@ -2,19 +2,11 @@ from app.agents.state import SupportState
 
 
 class EscalationHandlerNode:
-    def __init__(self) -> None:
-        pass
+    ESCALATION_INTENTS = {"human_handoff", "refund_request", "billing"}
 
     def should_escalate(self, state: SupportState) -> bool:
-        """Return True if ticket should be escalated to human."""
-        escalation_intents = {"human_handoff", "refund_request", "billing"}
-        if state.intent in escalation_intents:
-            return True
-        # Confidence-based escalation disabled for v1 baseline;
-        # v2 will enable with real retrieval-derived confidence scores
-        if state.confidence_score < 0.0:
-            return True
-        return False
+        """Return True if the ticket should be handed to a human."""
+        return state.intent in self.ESCALATION_INTENTS
 
     async def run(self, state: SupportState) -> SupportState:
         state.escalation_flag = True
