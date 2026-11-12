@@ -1,14 +1,19 @@
-"""Unit tests for evaluation metrics."""
+"""Unit tests for evaluation metrics and dataset integrity."""
 import json
+from collections import Counter
 from pathlib import Path
 
+import pytest
+
 from app.evaluation.metrics import (
-    intent_accuracy,
-    escalation_accuracy,
-    response_groundedness,
-    resolution_rate,
     check_thresholds,
+    escalation_accuracy,
+    intent_accuracy,
+    resolution_rate,
+    response_groundedness,
+    status_accuracy,
 )
+from app.evaluation.metrics_v2 import mrr, precision_at_k, recall_at_k
 
 
 def test_intent_accuracy_perfect():
@@ -41,11 +46,43 @@ def test_resolution_rate():
     assert result.score == 0.75
 
 
+def test_status_accuracy():
+    result = status_accuracy(
+        ["resolved", "in_progress", "open"], ["resolved", "in_progress", "resolved"]
+    )
+    assert result.score == 2 / 3
+
+
 def test_response_groundedness():
     responses = ["You can refund within 30 days."]
     contexts = [["Refund policy: Items can be refunded within 30 days of purchase."]]
     result = response_groundedness(responses, contexts)
     assert result.score == 1.0
+
+
+def test_response_groundedness_rejects_unrelated_answer():
+    responses = ["Bananas are yellow."]
+    contexts = [["Refund policy: Items can be refunded within 30 days."]]
+    result = response_groundedness(responses, contexts)
+    assert result.score == 0.0
+
+
+def test_retrieval_metrics_use_document_ids():
+    retrieved = [["refund_policy", "billing_invoices", "shipping"]]
+    relevant = [["refund_policy", "billing_invoices"]]
+    assert precision_at_k(retrieved, relevant, k=3).score == pytest.approx(2 / 3, abs=1e-4)
+    assert recall_at_k(retrieved, relevant, k=3).score == 1.0
+    assert mrr(retrieved, relevant).score == 1.0
+
+
+def test_retrieval_metrics_skip_queries_without_relevant_docs():
+    retrieved = [["shipping"], ["refund_policy"]]
+    relevant = [[], ["refund_policy"]]
+    precision = precision_at_k(retrieved, relevant, k=3)
+    assert precision.total == 1
+    assert precision.score == 1.0
+    assert mrr(retrieved, relevant).total == 1
+    assert recall_at_k(retrieved, relevant, k=3).total == 1
 
 
 def test_check_thresholds_pass():
@@ -78,8 +115,58 @@ def test_golden_set_loads():
     assert all("expected_escalate" in item for item in data)
     assert all("expected_status" in item for item in data)
     assert all("category" in item for item in data)
-    # Verify 30 per category
-    from collections import Counter
+    assert all("relevant_doc_ids" in item for item in data)
+    # Every labelled document must exist in the knowledge base.
+    from ingestion.knowledge_base import KNOWLEDGE_BASE
+
+    known_ids = {document["id"] for document in KNOWLEDGE_BASE}
+    for item in data:
+        assert set(item["relevant_doc_ids"]).issubset(known_ids)
+
     dist = Counter(item["category"] for item in data)
     for cat in ["billing", "technical", "general", "refund_request", "human_handoff"]:
         assert dist[cat] == 30, f"Expected 30 {cat} questions, got {dist[cat]}"
+
+
+def _judge_with_raw(raw: str):
+    from unittest.mock import AsyncMock, patch
+
+    from app.evaluation.llm_judge import LLMJudge
+
+    judge = LLMJudge()
+    patcher = patch.object(judge.llm, "generate", AsyncMock(return_value=raw))
+    return judge, patcher
+
+
+def test_judge_parses_supported():
+    import asyncio
+
+    judge, patcher = _judge_with_raw("SUPPORTED")
+    with patcher:
+        assert asyncio.run(judge.classify("answer", "context")) == "SUPPORTED"
+        assert asyncio.run(judge.judge_groundedness("answer", "context")) is True
+
+
+def test_judge_parses_unsupported_not_supported():
+    import asyncio
+
+    judge, patcher = _judge_with_raw("UNSUPPORTED")
+    with patcher:
+        assert asyncio.run(judge.classify("answer", "context")) == "UNSUPPORTED"
+
+
+def test_judge_parses_refusal():
+    import asyncio
+
+    judge, patcher = _judge_with_raw("REFUSAL")
+    with patcher:
+        assert asyncio.run(judge.classify("answer", "context")) == "REFUSAL"
+        assert asyncio.run(judge.judge_groundedness("answer", "context")) is False
+
+
+def test_judge_treats_unknown_output_as_unsupported():
+    import asyncio
+
+    judge, patcher = _judge_with_raw("I am not sure what you mean")
+    with patcher:
+        assert asyncio.run(judge.classify("answer", "context")) == "UNSUPPORTED"

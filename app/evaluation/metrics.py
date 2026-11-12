@@ -47,23 +47,36 @@ def escalation_accuracy(predictions: List[bool], ground_truth: List[bool]) -> Ev
     )
 
 
+def _words(text: str) -> set[str]:
+    return {
+        token.strip(".,!?;:'\"()[]").lower()
+        for token in text.split()
+        if token.strip(".,!?;:'\"()[]")
+    }
+
+
 def response_groundedness(responses: List[str], contexts: List[List[str]]) -> EvalResult:
-    """% of responses where key claims are supported by retrieved context."""
+    """% of responses substantially supported by retrieved context.
+
+    This is a cheap lexical proxy. Real groundedness is measured with the
+    LLM judge in ``scripts/run_real_eval.py``.
+    """
     passed = 0
     total = len(responses)
     details = []
     for response, context in zip(responses, contexts):
-        context_text = " ".join(context).lower()
-        response_words = set(response.lower().split())
-        context_words = set(context_text.split())
+        response_words = _words(response)
+        context_words = _words(" ".join(context))
         overlap = len(response_words & context_words)
-        supported = overlap > 0
+        ratio = overlap / len(response_words) if response_words else 0.0
+        supported = ratio >= 0.30
         if supported:
             passed += 1
         details.append(
             {
                 "response": response[:100],
                 "context_overlap": overlap,
+                "overlap_ratio": round(ratio, 4),
                 "pass": supported,
             }
         )
@@ -73,6 +86,19 @@ def response_groundedness(responses: List[str], contexts: List[List[str]]) -> Ev
         total=total,
         passed=passed,
         details=details,
+    )
+
+
+def status_accuracy(statuses: List[str], expected: List[str]) -> EvalResult:
+    """% of runs whose final ticket status matches the expected status."""
+    correct = sum(1 for s, e in zip(statuses, expected) if s == e)
+    total = len(expected)
+    return EvalResult(
+        name="Status Accuracy",
+        score=correct / total if total else 0.0,
+        total=total,
+        passed=correct,
+        details=[],
     )
 
 

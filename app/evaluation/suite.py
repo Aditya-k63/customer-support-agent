@@ -7,6 +7,7 @@ from app.evaluation.metrics import (
     escalation_accuracy,
     response_groundedness,
     resolution_rate,
+    status_accuracy,
     check_thresholds,
     EvalResult,
 )
@@ -16,14 +17,14 @@ GOLDEN_SET_PATH = Path(__file__).parent / "golden_set.json"
 REGRESSION_REPORT_PATH = Path(__file__).parent.parent.parent / "regression_report.json"
 BASELINE_REPORT_PATH = Path(__file__).parent.parent.parent / "baseline_report.json"
 
-# Regression thresholds — CI gate fails if any metric drops below these
-# v1 baseline thresholds — match current placeholder implementation
-# v2 will improve these with real embeddings and tighter thresholds
+# Regression thresholds for the deterministic CI gate. These are deliberately
+# scoped to logic that the deterministic suite actually measures. Retrieval
+# quality and LLM groundedness are gated by the real-model evaluation job.
 REGRESSION_THRESHOLDS: Dict[str, float] = {
     "Intent Accuracy": 0.50,
-    "Escalation Accuracy": 0.60,
-    "Response Groundedness": 0.70,
-    "Ticket Resolution Rate": 0.00,
+    "Escalation Precision": 0.55,
+    "Escalation Recall": 0.90,
+    "Status Accuracy": 0.90,
 }
 
 
@@ -51,6 +52,7 @@ def run_evaluation(
     responses: List[str],
     contexts: List[List[str]],
     statuses: List[str],
+    expected_statuses: List[str] | None = None,
 ) -> List[EvalResult]:
     """Run all evaluation metrics and return results."""
     results: List[EvalResult] = []
@@ -58,6 +60,8 @@ def run_evaluation(
     results.append(escalation_accuracy(escalations, expected_escalations))
     results.append(response_groundedness(responses, contexts))
     results.append(resolution_rate(statuses))
+    if expected_statuses is not None:
+        results.append(status_accuracy(statuses, expected_statuses))
     return results
 
 

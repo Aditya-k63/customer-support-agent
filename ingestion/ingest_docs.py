@@ -1,4 +1,4 @@
-"""Ingest FAQ/policy documents into pgvector with real embeddings."""
+"""Ingest the knowledge base into pgvector with chunking and deduplication."""
 import asyncio
 import sys
 from pathlib import Path
@@ -8,53 +8,26 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from app.agents.tools.vector_store import VectorStore  # noqa: E402
+from ingestion.chunker import chunk_documents  # noqa: E402
+from ingestion.knowledge_base import KNOWLEDGE_BASE  # noqa: E402
 
 
-SAMPLE_DOCS = [
-    {
-        "content": "Refund policy: Items can be refunded within 30 days of purchase with original receipt.",
-        "metadata": {"category": "billing", "source": "faq"},
-    },
-    {
-        "content": "Technical support: Reset your password at account settings or contact support@company.com.",
-        "metadata": {"category": "technical", "source": "faq"},
-    },
-    {
-        "content": "Billing: Invoices are generated on the 1st of each month. Payment methods include credit card and PayPal.",
-        "metadata": {"category": "billing", "source": "faq"},
-    },
-    {
-        "content": "General: Our business hours are Mon-Fri, 9 AM to 6 PM EST.",
-        "metadata": {"category": "general", "source": "faq"},
-    },
-    {
-        "content": "Shipping: Orders are processed within 1-2 business days and shipped via standard ground delivery.",
-        "metadata": {"category": "general", "source": "faq"},
-    },
-    {
-        "content": "Password reset: Click 'Forgot Password' on the login page or visit account settings to reset your password.",
-        "metadata": {"category": "technical", "source": "faq"},
-    },
-    {
-        "content": "Subscription cancellation: You can cancel anytime from your account dashboard. Access continues until the end of your billing period.",
-        "metadata": {"category": "billing", "source": "faq"},
-    },
-    {
-        "content": "Order tracking: Use the tracking number in your shipping confirmation email or check your order history page.",
-        "metadata": {"category": "general", "source": "faq"},
-    },
-]
+async def ingest_knowledge_base() -> int:
+    """Re-ingest every knowledge-base document and return chunk count."""
+    store = VectorStore()
+    total = 0
+    for document in KNOWLEDGE_BASE:
+        chunks = chunk_documents([document])
+        inserted = await store.replace_source_documents(document["id"], chunks)
+        print(f"[OK] {document['id']}: {inserted} chunk(s)")
+        total += inserted
+    return total
 
 
 def main() -> None:
-    vs = VectorStore()
-    asyncio.run(vs.add_documents(SAMPLE_DOCS))
-    print(f"Indexed {len(SAMPLE_DOCS)} documents into pgvector with embeddings.")
+    total = asyncio.run(ingest_knowledge_base())
+    print(f"Indexed {total} chunks into pgvector with semantic embeddings.")
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception as exc:
-        print(f"[WARN] Ingestion failed: {exc}")
-        print("[INFO] Continuing without document ingestion")
+    main()
